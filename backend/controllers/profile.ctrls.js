@@ -5,7 +5,7 @@ const index = (req, res) => {
     db.Profile.find({}, (error, profiles) => {
         if(error) return res.status(404).json({ error: error.message })
         return res.status(200).json({
-            posts,
+            profiles,
             requestedAt: new Date().toLocaleString()
         })
     })

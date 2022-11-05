@@ -10,10 +10,18 @@ const routes = require('./routes')
 // mongoose connection
 require('./config/db.connection')
 
-app.get('/', (req, res) => {
-    // console.log('testing')
-    res.send('Welcome to FLATSCALE')
-})
+// app.get('/', (req, res) => {
+//     // console.log('testing')
+//     res.send('Welcome to FLATSCALE')
+// })
+
+
+// middleware
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
+
+// routes
+app.use('/profile/', routes)
 
 // port
 app.listen(PORT, () => {
