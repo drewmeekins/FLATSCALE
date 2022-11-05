@@ -10,6 +10,11 @@ const PORT = process.env.PORT || 3000
 // mongoose connection
 require('./config/db.connection')
 
+app.get('/', (req, res) => {
+    // console.log('testing')
+    res.send('Welcome to FLATSCALE')
+})
+
 // port
 app.listen(PORT, () => {
     console.log('Welcome to FLATSCALE on Port:', PORT)
