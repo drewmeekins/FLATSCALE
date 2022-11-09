@@ -5,6 +5,9 @@ require('dotenv').config()
 const express = require('express')
 const app = express()
 const PORT = process.env.PORT || 3000
+const bcrypt = require('bcrypt')
+const session = require('express-session')
+
 const routes = require('./routes')
 
 // mongoose connection

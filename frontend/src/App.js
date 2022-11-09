@@ -7,13 +7,8 @@ backendURL = `${process.env.REACT_APP_BACKEND_URL}`
 
 // going to use this below if using hooks
 // const App = () => {
-//   constructor(props) {
-//     super(props)
-//     this.state = {
-//       profiles: []
-//     }
-//   }
-//   // const [profile, setProfile] = useState(0)
+//   // setup useState
+//   const [profile, setProfile] = useState(
 //   console.log(backendURL)
 
 

@@ -5,6 +5,7 @@ const Schema = mongoose.Schema
 const profileSchema = new Schema({
     username: {
         type: String,
+        unique: true,
         required: true
     },
     password: {
@@ -18,7 +19,11 @@ const profileSchema = new Schema({
     location: {
         type: String,
         required: false
-    }
+    },
+    image: {
+        type: String,
+        required: false
+    },
 })
 
 const Profile = mongoose.model('Profile', profileSchema)
