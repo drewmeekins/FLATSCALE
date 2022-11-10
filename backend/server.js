@@ -38,6 +38,15 @@ const corsOptions = {
 
 app.use(cors(corsOptions))
 
+// a local variable on all routes
+app.use(
+    session({
+        secret: process.env.SECRET,
+        resave: false,
+        saveUninitialized: false
+    })
+)
+
 // middleware
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
