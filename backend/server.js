@@ -52,7 +52,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
 // routes
-app.use('/profile/', routes)
+app.use(routes)
 
 // port
 app.listen(PORT, () => {
