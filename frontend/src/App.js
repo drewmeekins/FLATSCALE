@@ -1,5 +1,6 @@
 import React, { Component, useState } from 'react';
 import ProfileCard from './components/ProfileCard'
+import Register from './components/Register';
 
 // import backend from .env
 let backendURL = ''
@@ -38,6 +39,7 @@ const App = () => {
       <h3>{backendURL}</h3>
       <h5>{getProfiles}</h5>
       <ProfileCard/>
+      <Register />
     </div>
   )
 }

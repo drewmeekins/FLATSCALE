@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 
 const Register = () => {
     const [username, setUsername] = useState('')
@@ -27,26 +27,43 @@ const Register = () => {
         setImage(event.target.value)
     }
     
-    handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault()
-        fetch(`${process.env.REACT_APP_BACKEND_URL}`, {
+        console.log('target:',event.target)
+        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/profile`, {
             method: 'POST',
             body: JSON.stringify({
-                username: profiles.username,
-                password: profiles.password,
-                location: profiles.locaiton,
-                name: profiles.name,
-            })
+                username: event.target.value,
+                password: event.target.value,
+                name: event.target.value,
+                location: event.target.value,
+                image: event.target.value
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        })
+        const responseData = await response.json()
+        console.log(responseData)
+        .catch((err) => {
+            console.log(err)
         })
     }
 
 
     return(
         <div>
-            <form onSubmit={handleSubmit()}>
+            <form onSubmit={handleSubmit}>
                 <h1>Sign Up!</h1>
-                <input>Name</input>
+                <input onChange={handleChangeUsername} type='text' name='username' placeholder='Username'/>
+                <input onChange={handleChangePassword} type='text' name='password' placeholder='Password'/>
+                <input onChange={handleChangeName} type='text' name='name' placeholder='Name'/>
+                <input onChange={handleChangeLocation} type='text' name='location' placeholder='Location'/>
+                <input type='text' name='image' placeholder='Image'/>
+                <input type='submit' placeholder='Sign Up!'/>
             </form>
         </div>
     )
 }
+
+export default Register

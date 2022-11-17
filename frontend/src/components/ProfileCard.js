@@ -1,4 +1,5 @@
-import React, { Component, useState, useEffect } from 'react'
+import React, { Component, useState, useEffect, createContext, useContext } from 'react'
+const ProfileContext = createContext()
 
 
 const ProfileCard = () => {
@@ -26,9 +27,11 @@ const ProfileCard = () => {
     
     return(
         <div>
-            <h1>{profile[0].password}</h1>
-            <h1>Profile</h1>
-            <h4>Showing Profile: </h4>
+            <ProfileContext.Provider value={profile}>
+                <h1>{profile.password}</h1>
+                <h1>Profile</h1>
+                <h4>Showing Profile: </h4>
+            </ProfileContext.Provider>
         </div>
     )
 }
