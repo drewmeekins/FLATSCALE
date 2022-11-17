@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+import React, { Component, useState, useNavigate } from 'react';
 
 const Register = () => {
     const [username, setUsername] = useState('')
@@ -30,26 +30,32 @@ const Register = () => {
     const handleSubmit = async (event) => {
         event.preventDefault()
         console.log('target:',event.target)
-        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/profile`, {
-            method: 'POST',
-            body: JSON.stringify({
-                username: event.target.username.value,
-                password: event.target.password.value,
-                name: event.target.name.value,
-                location: event.target.location.value,
-                image: event.target.image.value
-            }),
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        })
-        .then((res) => res.json())
-        // const responseData = await response.json()
-        // console.log(responseData)
-        .catch((err) => {
+        try {
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/profile`, {
+                method: 'POST',
+                body: JSON.stringify({
+                    username: event.target.username.value,
+                    password: event.target.password.value,
+                    name: event.target.name.value,
+                    location: event.target.location.value,
+                    image: event.target.image.value
+                }),
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+            .then((res) => res.json())
+            if(response.status === 401) {
+                alert('This user already exists')
+                return
+            }
+            const responseData = await response.json()
+            console.log(responseData) 
+        } catch(err) {
             console.log(err)
-        })
-    }
+        }
+    }   
+        
 
 
     return(
