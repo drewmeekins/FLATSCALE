@@ -33,18 +33,19 @@ const Register = () => {
         const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/profile`, {
             method: 'POST',
             body: JSON.stringify({
-                username: event.target.value,
-                password: event.target.value,
-                name: event.target.value,
-                location: event.target.value,
-                image: event.target.value
+                username: event.target.username.value,
+                password: event.target.password.value,
+                name: event.target.name.value,
+                location: event.target.location.value,
+                image: event.target.image.value
             }),
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
             },
         })
-        const responseData = await response.json()
-        console.log(responseData)
+        .then((res) => res.json())
+        // const responseData = await response.json()
+        // console.log(responseData)
         .catch((err) => {
             console.log(err)
         })
@@ -53,7 +54,7 @@ const Register = () => {
 
     return(
         <div>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={(event) => handleSubmit(event)}>
                 <h1>Sign Up!</h1>
                 <input onChange={handleChangeUsername} type='text' name='username' placeholder='Username'/>
                 <input onChange={handleChangePassword} type='text' name='password' placeholder='Password'/>
