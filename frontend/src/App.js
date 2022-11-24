@@ -1,4 +1,5 @@
 import React, { Component, useState } from 'react';
+import { BrowserRouter as Router, Routes, Route, Outlet, Link, useRouteMatch, useParams } from "react-router-dom";
 import ProfileCard from './components/ProfileCard'
 import Register from './components/Register';
 
@@ -36,10 +37,11 @@ const App = () => {
   return(
     <div>
       <h1>Welcome To FLATSCALE!</h1>
+      <h2>Testing</h2>
       <h3>{backendURL}</h3>
       <h5>{getProfiles}</h5>
       <ProfileCard/>
-      <Register />
+      <Register/>
     </div>
   )
 }
