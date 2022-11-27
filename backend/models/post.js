@@ -22,7 +22,9 @@ const postsSchema = new Schema({
     // include userId to match with profile model id
     // can retrieve users' post to show on specific profile
     // when logged in fetch posts via routes
-})
+    },
+    {timestamps: true}
+)
 
 const Post = mongoose.model('Post', postsSchema)
 
