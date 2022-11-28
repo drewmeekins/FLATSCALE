@@ -29,3 +29,35 @@ const create = (req, res) => {
         return res.status(200).json(createPost)
     })
 }
+
+// destroy post
+const destroy = (req, res) => {
+    db.Post.findByIdAndDelete(req.params.id, (error, deletedPost) => {
+        if (!deletedPost) return res.status(400).json({ error: 'Post not found' })
+        if (error) return res.status(400).json({ error: error.message })
+        return res.status(200).json({ message: `Post ${deletedPost.title} deleted successfully!`})
+    })
+}
+
+// update route
+const update = (req, res) => {
+    db.Post.findByIdAndUpdate(
+        req.params.id,
+        {
+            $set: req.body,
+        },
+        { new: true },
+        (err, updatedPost) => {
+            if (err) return res.status(400).json({ error: err.message })
+            return res.status(200).json(updatedPost)
+        }
+    )
+}
+
+module.exports = {
+    index,
+    getById,
+    create,
+    destroy,
+    update
+}
